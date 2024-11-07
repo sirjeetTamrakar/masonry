@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import Upload from "./components/Upload";
+import ImageDisplay from "./components/ImageDisplay";
+import { useState } from "react";
+import { Grid } from "@mui/material";
+import Sidebar from "./components/Sidebar";
 
-function App() {
+const App = () => {
+  const [imageList, setImageList] = useState([]);
+  const [searchWord, setSearchWord] = useState("");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Grid container>
+        <Grid item xs={1} sm={1} md={2}>
+          <Sidebar />
+        </Grid>
+        <Grid item xs={11} sm={11} md={10}>
+          <Upload
+            imageList={imageList}
+            setImageList={setImageList}
+            searchWord={searchWord}
+            setSearchWord={setSearchWord}
+          />
+          <ImageDisplay
+            imageList={imageList}
+            setImageList={setImageList}
+            searchWord={searchWord}
+            setSearchWord={setSearchWord}
+          />
+        </Grid>
+      </Grid>
+    </>
   );
-}
+};
 
 export default App;
